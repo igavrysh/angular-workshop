@@ -7,11 +7,11 @@ import { Component, ViewChild } from '@angular/core';
 })
 export class AppComponent {
 
-  @ViewChild('sidenav') sidenav;
+  @ViewChild('sidenav') localSideNav;
 
   title = 'Angular Core Workshop';
 
   toggle() {
-    this.sidenav.toggle();
+    this.localSideNav.toggle();
   }
 }
