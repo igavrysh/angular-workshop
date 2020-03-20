@@ -105,7 +105,7 @@
     },
     {
       "id": "2",
-      "title": "Project Two",
+      "title": "Project One 2 3",
       "details": "This is a sample project",
       "percentComplete": 40,
       "approved": true,
@@ -115,10 +115,10 @@
       "customerId": "3"
     },
     {
-      "id": "NaLriMg",
-      "title": "TEST Project!",
-      "details": "TEST",
-      "percentComplete": 89,
+      "id": "69hK7ny",
+      "title": "12321",
+      "details": "213213",
+      "percentComplete": 34,
       "approved": true
     }
   ]

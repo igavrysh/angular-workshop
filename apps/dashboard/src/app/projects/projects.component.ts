@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService, Project } from '@workshop/core-data'
+import { ProjectsService, Project } from '@workshop/core-data';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ export class ProjectsComponent implements OnInit {
   projects$: Observable<Project[]>;
   selectedProject: Project;
 
-  constructor(private projectService: ProjectsService) { }
+  constructor(private projectService: ProjectsService) {}
 
   ngOnInit(): void {
     this.resetProject();
@@ -35,20 +35,45 @@ export class ProjectsComponent implements OnInit {
     this.selectProject(emptyProject);
   }
 
-  cancel() {
-    this.resetProject();
-
-  }
-
   getProjects() {
     this.projects$ = this.projectService.all();
   }
 
   saveProject(project) {
-    console.log('SAVING PROJECT', project);
+    if (!project.id) {
+      this.createProject(project);
+    } else {
+      this.updateProject(project);
+    }
+  }
+
+  createProject(project) {
+    this.projectService.create(project)
+      .subscribe(result => {
+        this.getProjects();
+        this.resetProject();
+      });
+  }
+
+  updateProject(project) {
+    this.projectService.update(project)
+      .subscribe(result => {
+        this.getProjects();
+        this.resetProject();
+      });
   }
 
   deleteProject(project) {
-    this.projectService.deltete(project.id).subscribe(result => this.getProjects());
+    this.projectService
+      .deltete(project.id)
+      .subscribe(result => { 
+        this.getProjects();
+        this.resetProject();
+      });
   }
+
+  cancel() {
+    this.resetProject();
+  }
+
 }
