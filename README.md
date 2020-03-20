@@ -1,3 +1,22 @@
+# (igavrysh)
+
+To run front
+
+```
+npm start
+```
+
+To run server 
+```
+npm run server
+```
+
+OR just run
+```
+npm run server:all
+```
+
+
 # AngularCoreWorkshop
 
 This project was generated using [Nx](https://nx.dev).

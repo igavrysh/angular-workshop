@@ -35,8 +35,7 @@ export class ProjectsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  all(): Project[] {
-    //return this.httpClient.get(`${BASE_URL}${this.model}`);
-    return this.projects;
+  all() {
+    return this.httpClient.get(`${BASE_URL}${this.model}`);
   }
 }
