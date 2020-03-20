@@ -15,6 +15,7 @@ export class ProjectsComponent implements OnInit {
   constructor(private projectService: ProjectsService) { }
 
   ngOnInit(): void {
+    this.resetProject();
     this.getProjects();
   }
 
@@ -23,8 +24,20 @@ export class ProjectsComponent implements OnInit {
     this.selectedProject = project;
   }
 
+  resetProject() {
+    const emptyProject: Project = {
+      id: null,
+      title: '',
+      details: '',
+      percentComplete: 0,
+      approved: false
+    };
+    this.selectProject(emptyProject);
+  }
+
   cancel() {
-    this.selectProject(null);
+    this.resetProject();
+
   }
 
   getProjects() {
