@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { ProjectsService } from './projects/projects.service';
 
 @NgModule({
   imports: [CommonModule],
   providers: [
-    ProjectsService
+    ProjectsService,
+    HttpClientModule
   ]
 })
 export class CoreDataModule {}

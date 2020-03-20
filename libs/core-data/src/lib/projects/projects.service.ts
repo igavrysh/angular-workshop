@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project';
+import { HttpClient } from '@angular/common/http';
+
+const BASE_URL = 'http://localhost:3000/'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
+  model = 'projects';
   private projects: Project[] = [
     {
       id: '1',
@@ -29,9 +33,10 @@ export class ProjectsService {
     }
   ];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   all(): Project[] {
+    //return this.httpClient.get(`${BASE_URL}${this.model}`);
     return this.projects;
   }
 }
