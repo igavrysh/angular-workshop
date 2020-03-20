@@ -4,9 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
 import { MaterialModule } from '@workshop/material';
+import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { ProjectsDetailsComponent } from './projects-details/projects-details.component';
 
 @NgModule({
-  declarations: [ProjectsComponent],
+  declarations: [
+    ProjectsComponent, 
+    ProjectsListComponent, 
+    ProjectsDetailsComponent
+  ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
