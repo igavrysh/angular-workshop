@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 const BASE_URL = 'http://localhost:3000/'
 
@@ -23,7 +21,7 @@ export class ProjectsService {
   }
 
   all() {
-    return this.httpClient.get(this.getUrl());
+    return this.httpClient.get<Project[]>(this.getUrl());
   }
 
   create(project) {

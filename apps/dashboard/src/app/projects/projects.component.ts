@@ -72,7 +72,7 @@ export class ProjectsComponent implements OnInit {
       });
   }
 
-  cancel() {
+  cancel(project) {
     this.resetProject();
   }
 
