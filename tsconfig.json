@@ -21,6 +21,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@env/*": [
+        "apps/dashboard/src/environments/*"
+      ],
       "@workshop/material": [
         "libs/material/src/index.ts"
       ],

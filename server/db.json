@@ -94,7 +94,7 @@
   "projects": [
     {
       "id": "1",
-      "title": "Project HOLLA!123",
+      "title": "Project One!",
       "details": "This is a sample project",
       "percentComplete": 20,
       "approved": false,
@@ -105,8 +105,8 @@
     },
     {
       "id": "2",
-      "title": "Project One 2 3 9",
-      "details": "This is a sample project jkljkljkljkljkljkljkljkl\nlkjklk\n ,k jk\njk",
+      "title": "Project Two",
+      "details": "Project #2",
       "percentComplete": 100,
       "approved": true,
       "startDate": null,
@@ -116,8 +116,8 @@
     },
     {
       "id": "69hK7ny",
-      "title": "12321888",
-      "details": "213213",
+      "title": "Project THREE",
+      "details": "Final project in sequence",
       "percentComplete": 2,
       "approved": true
     }

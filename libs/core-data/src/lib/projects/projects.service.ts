@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Project } from './project';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '@env/environment';
+
 
 const BASE_URL = 'http://localhost:3000/'
 
@@ -13,7 +15,7 @@ export class ProjectsService {
   constructor(private httpClient: HttpClient) { }
 
   getUrl() {
-    return `${BASE_URL}${this.model}`;
+    return `${environment.apiEndpoint}${this.model}`;
   }
 
   getUrlForId(id) {
