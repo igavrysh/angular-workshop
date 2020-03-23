@@ -34,7 +34,8 @@
       "@workshopbase/ui-toolbar": [
         "libs/ui-toolbar/src/index.ts"
       ]
-    }
+    },
+    "skipLibCheck": true,
   },
   "exclude": [
     "node_modules",
