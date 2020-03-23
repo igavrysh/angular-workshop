@@ -269,6 +269,9 @@
     },
     "@nrwl/angular:library": {
       "unitTestRunner": "karma"
+    },
+    "@nrwl/schematics:component": {
+      "styleext": "scss"
     }
   },
   "defaultProject": "dashboard"

@@ -31,7 +31,7 @@
       "@workshop/ui-login": [
         "libs/ui-login/src/index.ts"
       ],
-      "@workshopbase/ui-toolbar": [
+      "@workshop/ui-toolbar": [
         "libs/ui-toolbar/src/index.ts"
       ]
     },
