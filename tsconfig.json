@@ -2,12 +2,12 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
+    "importHelpers": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
     "typeRoots": [
@@ -17,23 +17,21 @@
       "es2017",
       "dom"
     ],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@env/*": [
         "apps/dashboard/src/environments/*"
       ],
-      "@workshop/material": [
-        "libs/material/src/index.ts"
-      ],
       "@workshop/core-data": [
         "libs/core-data/src/index.ts"
+      ],
+      "@workshop/material": [
+        "libs/material/src/index.ts"
       ],
       "@workshop/ui-login": [
         "libs/ui-login/src/index.ts"
       ],
-      "@workshop/ui-toolbar": [
+      "@workshopbase/ui-toolbar": [
         "libs/ui-toolbar/src/index.ts"
       ]
     }
