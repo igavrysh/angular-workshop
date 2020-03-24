@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Project, ProjectsService } from '@workshop/core-data';
+import { Project, ProjectsService, CustomersService, NotificationsService } from '@workshop/core-data';
 
 @Component({
   selector: 'app-projects',
@@ -12,7 +12,10 @@ export class ProjectsComponent implements OnInit {
   projects$: Observable<Project[]>;
   selectedProject: Project;
 
-  constructor(private projectService: ProjectsService) {}
+  constructor(
+    private projectService: ProjectsService,
+    private customerService: CustomersService,
+    private ns: NotificationsService) {}
 
   ngOnInit(): void {
     this.resetProject();
