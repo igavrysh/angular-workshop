@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from '@workshop/core-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',

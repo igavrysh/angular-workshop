@@ -30,7 +30,8 @@ describe('ProjectsComponent', () => {
     title: '',
     details: '',
     percentComplete: 0,
-    approved: false
+    approved: false,
+    customerId: null
   };
 
   beforeEach(async(() => {
