@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ui-toolbar',
@@ -6,15 +6,10 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
   styleUrls: ['./toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent  {
   @Input() isLoggedIn;
   @Input() title;
   @Input() sidenav;
   @Output() logout = new EventEmitter();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  
 }
