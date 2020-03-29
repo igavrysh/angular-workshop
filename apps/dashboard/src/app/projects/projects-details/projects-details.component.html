@@ -2,46 +2,61 @@
   <mat-card-header>
     <mat-card-title>
       <h1>
-        <span *ngIf="currentProject.id; else elseBlock">
-          {{ originalTitle }}
+        <span *ngIf="selectedProject.id; else elseBlock">
+          Editing {{ originalTitle }}
         </span>
-        <ng-template #elseBlock>Select a Project</ng-template>
+        <ng-template #elseBlock>Create Project</ng-template>
       </h1>
     </mat-card-title>
   </mat-card-header>
-  <form (submit)="saved.emit(currentProject)">
+  <form (submit)="saved.emit(selectedProject)">
     <mat-card-content>
       <mat-form-field class="full-width">
         <input
           matInput
-          [(ngModel)]="currentProject.title"
+          [(ngModel)]="selectedProject.title"
           placeholder="Title"
           type="text"
           name="title"
         />
       </mat-form-field>
+
       <mat-form-field class="full-width">
         <textarea
           matInput
-          [(ngModel)]="currentProject.details"
+          [(ngModel)]="selectedProject.details"
           placeholder="Details"
           type="text"
           name="details"
         ></textarea>
       </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-select
+          placeholder="Customer"
+          [(ngModel)]="selectedProject.customerId"
+          name="customerId"
+        >
+          <mat-option *ngFor="let customer of customers" [value]="customer.id">
+            {{customer.firstName}} {{customer.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <section class="full-width">
-        <h4>{{ currentProject.percentComplete }}% Complete</h4>
+        <h4>{{ selectedProject.percentComplete }}% Complete</h4>
         <mat-slider
           class="full-width"
           min="0"
           max="100"
           thumbLabel
-          [(ngModel)]="currentProject.percentComplete"
+          [(ngModel)]="selectedProject.percentComplete"
           name="percentComplete"
         ></mat-slider>
       </section>
+      
       <section>
-        <mat-checkbox [(ngModel)]="currentProject.approved" name="approved"
+        <mat-checkbox [(ngModel)]="selectedProject.approved" name="approved"
           >Approved By Customer</mat-checkbox
         >
       </section>
@@ -51,11 +66,13 @@
         type="submit"
         mat-button
         color="primary"
-        click="saveProject(currentProject)"
+        click="saveProject(selectedProject)"
       >
         Save
       </button>
-      <button type="button" mat-button (click)="canceled.emit(currentProject)">Cancel</button>
+      <button type="button" mat-button (click)="cancelled.emit(selectedProject)">
+        Cancel
+      </button>
     </mat-card-actions>
   </form>
 </mat-card>

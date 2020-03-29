@@ -1,6 +1,20 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Project, ProjectsService, CustomersService, NotificationsService } from '@workshop/core-data';
+import { 
+  Customer, 
+  Project, 
+  ProjectsService, 
+  CustomersService, 
+  NotificationsService } from '@workshop/core-data';
+
+const emptyProject: Project = {
+  id: null,
+  title: '',
+  details: '',
+  percentComplete: 0,
+  approved: false,
+  customerId: null
+};
 
 @Component({
   selector: 'app-projects',
@@ -10,7 +24,8 @@ import { Project, ProjectsService, CustomersService, NotificationsService } from
 export class ProjectsComponent implements OnInit {
   primaryColor = 'red';
   projects$: Observable<Project[]>;
-  selectedProject: Project;
+  customers$: Observable<Customer[]>;
+  currentProject: Project;
 
   constructor(
     private projectService: ProjectsService,
@@ -18,25 +33,25 @@ export class ProjectsComponent implements OnInit {
     private ns: NotificationsService) {}
 
   ngOnInit(): void {
-    this.resetProject();
+    this.getCustomers();
     this.getProjects();
+    this.resetCurrentProject();
+  }
+
+  resetCurrentProject() {
+    this.currentProject = emptyProject;
   }
 
   selectProject(project) {
-    console.log('SELECTED PROJECT', project);
-    this.selectedProject = project;
+    this.currentProject = project;
   }
 
-  resetProject() {
-    const emptyProject: Project = {
-      id: null,
-      title: '',
-      details: '',
-      percentComplete: 0,
-      approved: false,
-      customerId: null
-    };
-    this.selectProject(emptyProject);
+  cancel(project) {
+    this.resetCurrentProject();
+  }
+
+  getCustomers() {
+    this.customers$ = this.customerService.all();
   }
 
   getProjects() {
@@ -55,7 +70,8 @@ export class ProjectsComponent implements OnInit {
     this.projectService.create(project)
       .subscribe(result => {
         this.getProjects();
-        this.resetProject();
+        this.resetCurrentProject();
+        this.ns.emit('Project created!');
       });
   }
 
@@ -63,7 +79,8 @@ export class ProjectsComponent implements OnInit {
     this.projectService.update(project)
       .subscribe(result => {
         this.getProjects();
-        this.resetProject();
+        this.resetCurrentProject();
+        this.ns.emit('Project updated!');
       });
   }
 
@@ -72,12 +89,10 @@ export class ProjectsComponent implements OnInit {
       .deltete(project.id)
       .subscribe(result => { 
         this.getProjects();
-        this.resetProject();
+        this.resetCurrentProject();
+        this.ns.emit('Project deleted!');
       });
   }
 
-  cancel(project) {
-    this.resetProject();
-  }
 
 }

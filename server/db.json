@@ -96,7 +96,7 @@
       "id": "1",
       "title": "Project One!",
       "details": "This is a sample project",
-      "percentComplete": 20,
+      "percentComplete": 16,
       "approved": false,
       "startDate": null,
       "targetDate": null,
@@ -118,8 +118,16 @@
       "id": "69hK7ny",
       "title": "Project THREE",
       "details": "Final project in sequence",
-      "percentComplete": 29,
+      "percentComplete": 0,
       "approved": true
+    },
+    {
+      "id": "D59b2j2",
+      "title": "",
+      "details": "",
+      "percentComplete": 19,
+      "approved": false,
+      "customerId": null
     }
   ]
 }

@@ -1,23 +1,24 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Project } from '@workshop/core-data';
+import { Project, Customer } from '@workshop/core-data';
 
 @Component({
   selector: 'app-projects-details',
   templateUrl: './projects-details.component.html',
-  styleUrls: ['./projects-details.component.css']
+  styleUrls: ['./projects-details.component.scss']
 })
 export class ProjectsDetailsComponent implements OnInit {
-  currentProject: Project;
+  selectedProject: Project;
   originalTitle;
 
   @Output() saved = new EventEmitter();
-  @Output() canceled = new EventEmitter();
+  @Output() cancelled = new EventEmitter();
 
+  @Input() customers: Customer[];
   @Input() set project(value) {
     if (value) {
       this.originalTitle = value.title;
     }
-    this.currentProject = Object.assign({}, value);
+    this.selectedProject = Object.assign({}, value);
   };
 
   constructor() { }

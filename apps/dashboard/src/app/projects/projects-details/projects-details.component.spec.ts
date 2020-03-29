@@ -15,6 +15,7 @@ describe('ProjectsDetailsComponent', () => {
     details: '',
     percentComplete: 0,
     approved: false,
+    customerId: null
   }
 
   beforeEach(async(() => {
@@ -32,7 +33,7 @@ describe('ProjectsDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectsDetailsComponent);
     component = fixture.componentInstance;
-    component.currentProject = emptyProject;
+    component.selectedProject = emptyProject;
     fixture.detectChanges();
   });
 
