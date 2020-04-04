@@ -5,7 +5,9 @@ import {
   Project, 
   ProjectsService, 
   CustomersService, 
-  NotificationsService } from '@workshop/core-data';
+  NotificationsService, 
+  ProjectsState} from '@workshop/core-data';
+import { Store, select } from '@ngrx/store';
 
 const emptyProject: Project = {
   id: null,
@@ -30,7 +32,12 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private projectService: ProjectsService,
     private customerService: CustomersService,
-    private ns: NotificationsService) {}
+    private store: Store<ProjectsState>,
+    private ns: NotificationsService) {
+      this.projects$ = store.pipe(
+        select('projects')
+      )
+    }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -55,7 +62,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.projects$ = this.projectService.all();
+    //this.projects$ = this.projectService.all();
   }
 
   saveProject(project) {
