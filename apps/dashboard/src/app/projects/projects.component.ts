@@ -8,6 +8,7 @@ import {
   NotificationsService, 
   ProjectsState} from '@workshop/core-data';
 import { Store, select } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 
 const emptyProject: Project = {
   id: null,
@@ -35,9 +36,11 @@ export class ProjectsComponent implements OnInit {
     private store: Store<ProjectsState>,
     private ns: NotificationsService) {
       this.projects$ = store.pipe(
-        select('projects')
+        select('projects'),
+        map((projectsState: ProjectsState) => projectsState.projects)
       )
     }
+
 
   ngOnInit(): void {
     this.getCustomers();
@@ -74,32 +77,29 @@ export class ProjectsComponent implements OnInit {
   }
 
   createProject(project) {
-    this.projectService.create(project)
-      .subscribe(result => {
-        this.getProjects();
-        this.resetCurrentProject();
-        this.ns.emit('Project created!');
-      });
+    this.store.dispatch({ 
+      type: 'create', 
+      payload: project});
+
+    this.resetCurrentProject();
+    this.ns.emit('Project created!');
   }
 
   updateProject(project) {
-    this.projectService.update(project)
-      .subscribe(result => {
-        this.getProjects();
-        this.resetCurrentProject();
-        this.ns.emit('Project updated!');
-      });
+    this.store.dispatch({
+      type: 'update',
+      payload: project});
+
+    this.resetCurrentProject();
+    this.ns.emit('Project updated!'); 
   }
 
   deleteProject(project) {
-    this.projectService
-      .deltete(project.id)
-      .subscribe(result => { 
-        this.getProjects();
-        this.resetCurrentProject();
-        this.ns.emit('Project deleted!');
-      });
+    this.store.dispatch({
+      type: 'delete',
+      payload: project});
+
+    this.resetCurrentProject();
+    this.ns.emit('Project deleted!');
   }
-
-
 }
