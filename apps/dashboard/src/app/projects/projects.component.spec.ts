@@ -76,7 +76,7 @@ describe('ProjectsComponent', () => {
 
   it('should select a project', () => {
     component.selectProject(emptyProject);
-    expect(component.selectedProject).toBe(emptyProject);
+    expect(component.currentProject).toBe(emptyProject);
   });
 
   it('should display primaryColor', ()=> {
