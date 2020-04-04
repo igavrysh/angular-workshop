@@ -1,4 +1,5 @@
 import { Project } from '../../projects/project.model';
+import { ProjectsActionTypes } from './project.actions';
 
 const initialProjects: Project[] = [
   {
@@ -27,8 +28,8 @@ const initialProjects: Project[] = [
   },
   {
     "id": "D59b2j2",
-    "title": "",
-    "details": "",
+    "title": "777",
+    "details": "Casino GRAND Royale",
     "percentComplete": 19,
     "approved": false,
     "customerId": null
@@ -53,22 +54,22 @@ export const initialState: ProjectsState = {
 
 export function projectsReducers(state = initialState, action): ProjectsState {
     switch(action.type) {
-      case 'select':
+      case ProjectsActionTypes.ProjectSelected:
         return {
           selectedProjectId: action.payload,
           projects: state.projects
         }
-      case 'create':
+      case ProjectsActionTypes.AddProject:
         return {
           selectedProjectId: state.selectedProjectId,
           projects: createProject(state.projects, action.payload)
         };
-      case 'update':
+      case ProjectsActionTypes.UpdateProject:
         return {
           selectedProjectId: state.selectedProjectId,
           projects: updateProject(state.projects, action.payload)
         };
-      case 'delete':
+      case ProjectsActionTypes.DeleteProject:
         return {
           selectedProjectId: state.selectedProjectId,
           projects: deleteProject(state.projects, action.payload)
