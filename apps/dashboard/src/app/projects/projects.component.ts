@@ -12,7 +12,9 @@ import {
   AddProject,
   UpdateProject,
   DeleteProject,
-  initialProjects} from '@workshop/core-data';
+  initialProjects,
+  selectAllProjects,
+  selectCurrentProject} from '@workshop/core-data';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 
@@ -34,20 +36,16 @@ export class ProjectsComponent implements OnInit {
   primaryColor = 'red';
   projects$: Observable<Project[]>;
   customers$: Observable<Customer[]>;
-  currentProject: Project;
+  currentProject$: Observable<Project>;
 
   constructor(
     private projectService: ProjectsService,
     private customerService: CustomersService,
     private store: Store<ProjectsState>,
     private ns: NotificationsService) {
-      this.projects$ = store.pipe(
-        select('projects'),
-        map(data => data.entities),
-        map(data => Object.keys(data).map(k => data[k]))
-      )
+      this.projects$ = store.pipe(select(selectAllProjects));
+      this.currentProject$ = store.pipe(select(selectCurrentProject));
     }
-
 
   ngOnInit(): void {
     this.getCustomers();
@@ -56,11 +54,11 @@ export class ProjectsComponent implements OnInit {
   }
 
   resetCurrentProject() {
-    this.currentProject = emptyProject;
+    this.store.dispatch(new SelectProject(null));
   }
 
   selectProject(project) {
-    this.currentProject = project;
+    this.store.dispatch(new SelectProject(project.id));
   }
 
   cancel(project) {
@@ -72,8 +70,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.store.dispatch(new LoadProjects(initialProjects));
-    //this.projects$ = this.projectService.all();
+    this.store.dispatch(new LoadProjects());
   }
 
   saveProject(project) {
