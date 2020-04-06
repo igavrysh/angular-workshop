@@ -4,7 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationsService } from '../notifications/notifications.service';
 
-
 @Injectable({
   providedIn: 'root'
 })

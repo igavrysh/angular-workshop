@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   links = [
     { path: '/', icon: 'home', title: 'Home' },
     { path: '/customers', icon: 'face', title: 'Customers' },
-    { path: '/projects', icon: 'work', title: 'Projcts' }
+    { path: '/projects', icon: 'work', title: 'Projects' }
   ];
 
   constructor(

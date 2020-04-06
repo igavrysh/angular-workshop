@@ -49,7 +49,6 @@ export class ProjectsService {
           this.notificationsService.emit(error);
           return throwError(error);
         })
-
     )
   }
 
