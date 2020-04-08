@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { 
   Customer,
@@ -7,6 +6,7 @@ import {
   Project,
   ProjectsFacade
 } from '@workshop/core-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -22,16 +22,15 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private customerService: CustomersService,
     private facade: ProjectsFacade,
-    private ns: NotificationsService
-    ) {
-      this.projects$ = facade.projects$;
-      this.currentProject$ = facade.currentProject$;
-    }
+    private ns: NotificationsService) {
+    this.projects$ = facade.projects$;
+    this.currentProject$ = facade.currentProject$;
+  }
 
   ngOnInit(): void {
-    //this.getCustomers();
-    //this.getProjects();
-    //this.resetCurrentProject();
+    this.getCustomers();
+    this.getProjects();
+    this.resetCurrentProject();
   }
 
   resetCurrentProject() {

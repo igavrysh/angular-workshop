@@ -60,7 +60,7 @@ export class ProjectsService {
     return this.http.patch(this.getUrlForId(project.id), project);
   }
 
-  deltete(project: Project) {
+  delete(project: Project) {
     return this.http.delete(this.getUrlForId(project.id));
   }
 }

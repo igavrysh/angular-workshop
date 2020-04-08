@@ -14,7 +14,6 @@ import { StateModule } from './state/state.module';
   providers: [
     AuthService,
     AuthGuardService,
-    CustomersService,
     NotificationsService,
     CustomersService,
     ProjectsService

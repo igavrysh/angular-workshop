@@ -181,7 +181,7 @@
       "projectType": "library",
       "root": "libs/core-data",
       "sourceRoot": "libs/core-data/src",
-      "prefix": "workshop",
+      "prefix": "core",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
