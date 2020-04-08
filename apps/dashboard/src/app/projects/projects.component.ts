@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { 
-  Customer, 
-  CustomersService, 
+  Customer,
+  CustomersService,
   NotificationsService,
   Project,
   ProjectsFacade
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
   primaryColor = 'red';

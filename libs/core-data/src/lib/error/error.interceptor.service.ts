@@ -17,9 +17,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
         if (error instanceof HttpErrorResponse) {
           this.notificationsService.emit(`${request.url} | ${error.status} - ${error.statusText}`);
         }
-
         return throwError(error);
       })
     )
-  }
+  };
 }

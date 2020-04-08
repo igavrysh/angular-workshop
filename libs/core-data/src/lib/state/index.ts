@@ -7,27 +7,29 @@ import * as fromProjects from './projects/projects.reducer';
 import { Project } from '../projects/project.model';
 
 export interface AppState {
-  projects: fromProjects.ProjectsState;
+  customers: fromCustomers.CustomersState,
+  projects: fromProjects.ProjectsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
+  customers: fromCustomers.customersReducer,
   projects: fromProjects.projectsReducers
 };
 
 // -------------------------------------------------------------------
 // PROJECTS SELECTORS
 // -------------------------------------------------------------------
-export const selectProjectState 
+export const selectProjectState
   = createFeatureSelector<fromProjects.ProjectsState>('projects');
 
 export const selectProjectIds = createSelector(
   selectProjectState,
-  fromProjects.selectedProjectIds
+  fromProjects.selectProjectIds
 );
 
-export const selectProjectEntites = createSelector(
+export const selectProjectEntities = createSelector(
   selectProjectState,
-  fromProjects.selectProjectEntites
+  fromProjects.selectProjectEntities
 )
 
 export const selectAllProjects = createSelector(
@@ -50,7 +52,7 @@ const emptyProject: Project = {
 };
 
 export const selectCurrentProject = createSelector(
-  selectProjectEntites,
+  selectProjectEntities,
   selectCurrentProjectId,
   (projectEntites, projectId) => {
     console.log('selectCurrentProject block');
@@ -61,8 +63,7 @@ export const selectCurrentProject = createSelector(
 // -------------------------------------------------------------------
 // CUSTOMERS SELECTORS
 // -------------------------------------------------------------------
-export const selectCustomersState 
-  = createFeatureSelector<fromCustomers.CustomersState>('customers');
+export const selectCustomersState = createFeatureSelector<fromCustomers.CustomersState>('customers');
 
 export const selectAllCustomers = createSelector(
   selectCustomersState,

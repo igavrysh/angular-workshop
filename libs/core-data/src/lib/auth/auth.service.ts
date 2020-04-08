@@ -10,7 +10,7 @@ export class AuthService {
   model = 'auth/login';
   isAuthenticated$ = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.setToken(this.getToken());
   }
 

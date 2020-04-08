@@ -20,7 +20,7 @@ import { StateModule } from './state/state.module';
     ProjectsService
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     HttpClientModule,
     StateModule
   ]

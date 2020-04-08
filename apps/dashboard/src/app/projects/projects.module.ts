@@ -17,8 +17,8 @@ import { ProjectsDetailsComponent } from './projects-details/projects-details.co
     FormsModule
   ],
   declarations: [
-    ProjectsComponent, 
-    ProjectsListComponent, 
+    ProjectsComponent,
+    ProjectsListComponent,
     ProjectsDetailsComponent
   ]
 })

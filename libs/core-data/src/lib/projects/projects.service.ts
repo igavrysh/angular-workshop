@@ -52,15 +52,15 @@ export class ProjectsService {
     )
   }
 
-  create(project) {
+  create(project: Project) {
     return this.http.post(this.getUrl(), project);
   }
 
-  update(project) {
+  update(project: Project) {
     return this.http.patch(this.getUrlForId(project.id), project);
   }
 
-  deltete(projectId) {
-    return this.http.delete(this.getUrlForId(projectId));
+  deltete(project: Project) {
+    return this.http.delete(this.getUrlForId(project.id));
   }
 }

@@ -17,7 +17,7 @@ export class CustomersService {
   }
 
   getUrlForId(id) {
-    return `${this.getUrl()}${id}`;
+    return `${this.getUrl()}/${id}`;
   }
 
   all() {
@@ -25,7 +25,7 @@ export class CustomersService {
   }
 
   load(id) {
-    return this.http.get<Customer[]>(this.getUrlForId(id));
+    return this.http.get<Customer>(this.getUrlForId(id));
   }
 
   create(customer: Customer) {

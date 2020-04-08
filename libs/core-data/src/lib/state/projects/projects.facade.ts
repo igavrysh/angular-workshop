@@ -13,12 +13,9 @@ import { LoadProjects, DeleteProject, UpdateProject, AddProject, SelectProject }
 })
 export class ProjectsFacade {
   projects$: Observable<Project[]>;
-  customers$: Observable<Customer[]>;
   currentProject$: Observable<Project>;
 
-  constructor(
-    private store: Store<ProjectsState>
-  ) {
+  constructor(private store: Store<ProjectsState>) {
     this.projects$ = store.pipe(select(selectAllProjects));
     this.currentProject$ = store.pipe(select(selectCurrentProject));
   }

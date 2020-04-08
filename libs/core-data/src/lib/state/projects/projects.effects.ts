@@ -7,12 +7,16 @@ import { Observable } from 'rxjs';
 import { Project } from '../../projects/project.model';
 import { ProjectsState } from './projects.reducer';
 import { ProjectsService } from '../../projects/projects.service';
-import { 
-  ProjectsActionTypes, 
-  LoadProjects, 
-  ProjectsLoaded, 
-  AddProject, 
-  ProjectAdded 
+import {
+  ProjectsActionTypes,
+  DeleteProject,
+  LoadProjects,
+  UpdateProject,
+  ProjectDeleted,
+  ProjectsLoaded,
+  AddProject,
+  ProjectAdded,
+  ProjectUpdated
 } from './project.actions';
 
 @Injectable({providedIn: 'root'})

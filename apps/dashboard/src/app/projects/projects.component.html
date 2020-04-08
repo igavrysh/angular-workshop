@@ -20,7 +20,7 @@
       [project]="currentProject$ | async"
       [customers]="customers$ | async"
       (saved)="saveProject($event)"
-      (canceled)="cancel($event)">
+      (cancelled)="resetCurrentProject($event)">
     </app-projects-details>
   </div>
 -->

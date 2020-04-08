@@ -1,6 +1,6 @@
-import { 
-  EntityState, 
-  EntityAdapter, 
+import {
+  EntityState,
+  EntityAdapter,
   createEntityAdapter } from '@ngrx/entity';
 import { Project } from '../../projects/project.model';
 import { ProjectsActionTypes, ProjectsActions } from './project.actions';
@@ -9,15 +9,13 @@ const createProject = (projects, project) => [...projects, project];
 const updateProject = (projects, project) => projects.map(p => {
   return p.id === project.id ? Object.assign({}, project) : p;
 });
-const deleteProject
-  = (projects, project) => projects.filter(w => project.id !== w.id); 
+const deleteProject = (projects, project) => projects.filter(w => project.id !== w.id);
 
 export interface ProjectsState extends EntityState<Project> {
   selectedProjectId: string | null;
 }
 
-export const adapter: EntityAdapter<Project> 
-  = createEntityAdapter<Project>();
+export const adapter: EntityAdapter<Project> = createEntityAdapter<Project>();
 
 export const initialState: ProjectsState = adapter.getInitialState({
   selectedProjectId: null
@@ -25,7 +23,7 @@ export const initialState: ProjectsState = adapter.getInitialState({
 
 export function projectsReducers(
   state = initialState, action: ProjectsActions): ProjectsState {
-  switch(action.type) {
+  switch (action.type) {
     case ProjectsActionTypes.ProjectSelected:
       return Object.assign({}, state, { selectedProjectId: action.payload });
     case ProjectsActionTypes.ProjectsLoaded:
@@ -44,11 +42,10 @@ export function projectsReducers(
   }
 }
 
-export const getSelectedProjectId 
-  = (state: ProjectsState) => state.selectedProjectId;
+export const getSelectedProjectId = (state: ProjectsState) => state.selectedProjectId;
 
 const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
 
-export const selectedProjectIds = selectIds;
-export const selectProjectEntites = selectEntities;
+export const selectProjectIds = selectIds;
+export const selectProjectEntities = selectEntities;
 export const selectAllProjects = selectAll;

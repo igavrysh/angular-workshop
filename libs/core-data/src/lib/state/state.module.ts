@@ -6,6 +6,7 @@ import { reducers } from '.';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './projects/projects.effects';
+import { CustomersEffects } from './customers/customers.effects';
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,7 @@ import { ProjectsEffects } from './projects/projects.effects';
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
     EffectsModule.forRoot([
+      CustomersEffects,
       ProjectsEffects
     ])
   ]

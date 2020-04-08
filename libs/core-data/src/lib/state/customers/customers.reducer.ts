@@ -5,8 +5,7 @@ import { CustomersActions, CustomersActionTypes } from './customers.actions';
 
 export interface CustomersState extends EntityState<Customer> {}
 
-export const adapter: EntityAdapter<Customer> 
-  = createEntityAdapter<Customer>();
+export const adapter: EntityAdapter<Customer> = createEntityAdapter<Customer>();
 export const initialState: CustomersState = adapter.getInitialState();
 
 export function customersReducer(
@@ -30,7 +29,7 @@ const { selectIds, selectEntities, selectAll } = adapter.getSelectors();
 export const selectCustomerIds = selectIds;
 
 // select the dictionary of widget entities
-export const selectCustomerEntites = selectEntities;
+export const selectCustomerEntities = selectEntities;
 
 // select the array of widgets
 export const selectAllCustomers = selectAll;
