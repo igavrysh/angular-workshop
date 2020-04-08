@@ -2,6 +2,7 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
+import { Observable } from 'rxjs';
 
 import { Project } from '../../projects/project.model';
 import { ProjectsState } from './projects.reducer';
@@ -22,8 +23,12 @@ export class ProjectsEffects {
     ProjectsActionTypes.LoadProjects, 
     {
       run: (action: LoadProjects, state: ProjectsState) => {
+        console.log('Running loadProjects Effect');
         return this.projectsService.all()
-          .pipe(map((res: Project[]) => new ProjectsLoaded(res)))
+          .pipe(map((res: Project[]) => {
+            console.log('Loaded from service projects ', res);
+            return new ProjectsLoaded(res)
+        }))
       },
       onError: (action: LoadProjects, error) => {
         console.log('Error', error);

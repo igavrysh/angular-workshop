@@ -29,9 +29,9 @@ export class ProjectsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.getCustomers();
-    this.getProjects();
-    this.resetCurrentProject();
+    //this.getCustomers();
+    //this.getProjects();
+    //this.resetCurrentProject();
   }
 
   resetCurrentProject() {
@@ -51,6 +51,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   getProjects() {
+    console.log('Before getting projects');
     this.facade.getProjects();
   }
 

@@ -15,7 +15,7 @@ export class ProjectsService {
   model = 'projects';
 
   constructor(
-    private httpClient: HttpClient,
+    private http: HttpClient,
     private notificationsService: NotificationsService
   ) { }
 
@@ -28,15 +28,15 @@ export class ProjectsService {
   }
 
   all() {
-    return this.httpClient.get<Project[]>(this.getUrl());
+    return this.http.get<Project[]>(this.getUrl());
   }
 
   load(id) {
-    return this.httpClient.get<Project>(this.getUrlForId(id));
+    return this.http.get<Project>(this.getUrlForId(id));
   }
 
   loadByCustomer(customerId: string) {
-    return this.httpClient.get<Project[]>(this.getUrl(), {params: {customerId}})
+    return this.http.get<Project[]>(this.getUrl(), {params: {customerId}})
       .pipe(
         switchMap(projects => {
           if (projects.length) {
@@ -53,14 +53,14 @@ export class ProjectsService {
   }
 
   create(project) {
-    return this.httpClient.post(this.getUrl(), project);
+    return this.http.post(this.getUrl(), project);
   }
 
   update(project) {
-    return this.httpClient.patch(this.getUrlForId(project.id), project);
+    return this.http.patch(this.getUrlForId(project.id), project);
   }
 
   deltete(projectId) {
-    return this.httpClient.delete(this.getUrlForId(projectId));
+    return this.http.delete(this.getUrlForId(projectId));
   }
 }

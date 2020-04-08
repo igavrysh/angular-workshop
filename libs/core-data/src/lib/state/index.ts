@@ -53,6 +53,7 @@ export const selectCurrentProject = createSelector(
   selectProjectEntites,
   selectCurrentProjectId,
   (projectEntites, projectId) => {
+    console.log('selectCurrentProject block');
     return projectId ? projectEntites[projectId] : emptyProject;
   } 
 )

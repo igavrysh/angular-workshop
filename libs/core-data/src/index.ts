@@ -9,6 +9,6 @@ export { ProjectsService } from './lib/projects/projects.service';
 export { CustomersFacade } from './lib/state/customers/customers.facade';
 export { ProjectsFacade } from './lib/state/projects/projects.facade';
 
-export { ProjectsState, initialProjects } from './lib/state/projects/projects.reducer';
+export { ProjectsState } from './lib/state/projects/projects.reducer';
 export { SelectProject, LoadProjects, AddProject, UpdateProject, DeleteProject } from './lib/state/projects/project.actions';
 export { selectAllProjects, selectCurrentProject } from './lib/state';
