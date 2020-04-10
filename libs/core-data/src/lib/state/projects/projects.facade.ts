@@ -1,44 +1,40 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
+import { Store, select, ActionsSubject } from '@ngrx/store';
 
-import { Project } from '../../projects/project.model';
-import { Customer } from '../../customers/customer.model';
-import { ProjectsState, selectAllProjects } from './projects.reducer';
-import { selectCurrentProject } from '..';
-import { LoadProjects, DeleteProject, UpdateProject, AddProject, SelectProject } from './project.actions';
+import { selectCurrentProject, selectAllProjects } from '..';
+import * as ProjectsActions from './project.actions';
+import { ProjectsState } from './projects.reducer';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsFacade {
-  projects$: Observable<Project[]>;
-  currentProject$: Observable<Project>;
+  allProjects$ = this.store.pipe(select(selectAllProjects));
+  currentProject$ = this.store.pipe(select(selectCurrentProject));
 
-  constructor(private store: Store<ProjectsState>) {
-    this.projects$ = store.pipe(select(selectAllProjects));
-    this.currentProject$ = store.pipe(select(selectCurrentProject));
+  constructor(
+    private store: Store<ProjectsState>,
+    private actions$: ActionsSubject) {
   }
 
-  getProjects() {
-    this.store.dispatch(new LoadProjects());
+  loadProjects() {
+    this.store.dispatch(new ProjectsActions.LoadProjects());
   }
 
-  selectProject(project) {
-    this.store.dispatch(new SelectProject(project.id));
+  selectProject(itemId) {
+    this.store.dispatch(new ProjectsActions.ProjectSelected(itemId));
   }
 
   createProject(project) {
-    this.store.dispatch(new AddProject(project));
+    this.store.dispatch(new ProjectsActions.AddProject(project));
   }
 
   updateProject(project) {
-    this.store.dispatch(new UpdateProject(project));
+    this.store.dispatch(new ProjectsActions.UpdateProject(project));
   }
 
   deleteProject(project) {
-    this.store.dispatch(new DeleteProject(project));
-
+    this.store.dispatch(new ProjectsActions.DeleteProject(project));
   }
-
 }

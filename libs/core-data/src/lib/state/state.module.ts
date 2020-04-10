@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NxModule } from '@nrwl/nx';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from '.';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { NxModule } from '@nrwl/nx';
+
+import { reducers } from '.';
 import { ProjectsEffects } from './projects/projects.effects';
 import { CustomersEffects } from './customers/customers.effects';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     NxModule.forRoot(),
@@ -19,6 +19,7 @@ import { CustomersEffects } from './customers/customers.effects';
       CustomersEffects,
       ProjectsEffects
     ])
-  ]
+  ],
+  declarations: []
 })
 export class StateModule { }

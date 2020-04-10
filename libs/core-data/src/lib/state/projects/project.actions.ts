@@ -2,18 +2,23 @@ import { Action } from '@ngrx/store';
 import { Project } from '@workshop/core-data';
 
 export enum ProjectsActionTypes {
+  ProjectsAction = '[Projects] Action',
   ProjectSelected = '[Projects] Selected',
   LoadProjects = '[Projects] Load Data',
   ProjectsLoaded = '[Projects] Data Loaded',
   AddProject = '[Projects] Add Data',
   ProjectAdded = '[Projects] Data Added',
   UpdateProject = '[Projects] Update Data',
-  ProjectUpdated = '[Projects] Project Updated',
+  ProjectUpdated = '[Projects] Data Updated',
   DeleteProject = '[Projects] Delete Data',
-  ProjectDeleted = '[Projects] Project Deleted'
+  ProjectDeleted = '[Projects] Data Deleted',
 }
 
-export class SelectProject implements Action {
+export class Projects implements Action {
+  readonly type = ProjectsActionTypes.ProjectsAction;
+}
+
+export class ProjectSelected implements Action {
   readonly type = ProjectsActionTypes.ProjectSelected;
   constructor(public payload) {}
 }
@@ -44,7 +49,7 @@ export class UpdateProject implements Action {
 
 export class ProjectUpdated implements Action {
   readonly type = ProjectsActionTypes.ProjectUpdated;
-  constructor(public payload: Project) { } 
+  constructor(public payload: Project) { }
 }
 
 export class DeleteProject implements Action {
@@ -57,7 +62,8 @@ export class ProjectDeleted implements Action {
   constructor(public payload: Project) { }
 }
 
-export type ProjectsActions = SelectProject
+export type ProjectsActions = Projects
+  | ProjectSelected
   | LoadProjects
   | ProjectsLoaded
   | AddProject

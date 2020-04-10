@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { 
+import {
   Customer,
   CustomersService,
   NotificationsService,
@@ -15,30 +15,28 @@ import { Observable } from 'rxjs';
 })
 export class ProjectsComponent implements OnInit {
   primaryColor = 'red';
-  projects$: Observable<Project[]>;
+  projects$: Observable<Project[]> = this.projectsFacade.allProjects$;
   customers$: Observable<Customer[]>;
-  currentProject$: Observable<Project>;
+  currentProject$: Observable<Project> = this.projectsFacade.currentProject$;
 
   constructor(
     private customerService: CustomersService,
-    private facade: ProjectsFacade,
+    private projectsFacade: ProjectsFacade,
     private ns: NotificationsService) {
-    this.projects$ = facade.projects$;
-    this.currentProject$ = facade.currentProject$;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.projectsFacade.loadProjects();
     this.getCustomers();
-    this.getProjects();
     this.resetCurrentProject();
   }
 
   resetCurrentProject() {
-    this.facade.selectProject({id: null});
+    this.selectProject({id: null});
   }
 
   selectProject(project) {
-    this.facade.selectProject(project);
+    this.projectsFacade.selectProject(project.id);
   }
 
   cancel(project) {
@@ -47,11 +45,6 @@ export class ProjectsComponent implements OnInit {
 
   getCustomers() {
     this.customers$ = this.customerService.all();
-  }
-
-  getProjects() {
-    console.log('Before getting projects');
-    this.facade.getProjects();
   }
 
   saveProject(project) {
@@ -63,21 +56,21 @@ export class ProjectsComponent implements OnInit {
   }
 
   createProject(project) {
-    this.facade.createProject(project);
+    this.projectsFacade.createProject(project);
 
     this.resetCurrentProject();
     this.ns.emit('Project created!');
   }
 
   updateProject(project) {
-    this.facade.updateProject(project);
+    this.projectsFacade.updateProject(project);
 
     this.resetCurrentProject();
-    this.ns.emit('Project updated!'); 
+    this.ns.emit('Project updated!');
   }
 
   deleteProject(project) {
-    this.facade.deleteProject(project);
+    this.projectsFacade.deleteProject(project);
 
     this.resetCurrentProject();
     this.ns.emit('Project deleted!');

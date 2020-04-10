@@ -23,17 +23,14 @@ export const selectProjectIds = createSelector(
   selectProjectState,
   fromProjects.selectProjectIds
 );
-
 export const selectProjectEntities = createSelector(
   selectProjectState,
   fromProjects.selectProjectEntities
 )
-
 export const selectAllProjects = createSelector(
   selectProjectState,
   fromProjects.selectAllProjects
 )
-
 export const selectCurrentProjectId = createSelector(
   selectProjectState,
   fromProjects.getSelectedProjectId
@@ -54,7 +51,7 @@ export const selectCurrentProject = createSelector(
   (projectEntites, projectId) => {
     console.log('selectCurrentProject block');
     return projectId ? projectEntites[projectId] : emptyProject;
-  } 
+  }
 )
 
 // -------------------------------------------------------------------
@@ -71,12 +68,9 @@ export const selectCustomersProjects = createSelector(
   selectAllCustomers,
   selectAllProjects,
   (customers, projects) => {
-    return customers.map(customer => {
-      return Object.assign({}, {
-        ...customer,
-        projects: projects.filter(
-          project => project.customerId === customer.id)
-      })
-    })
+    return customers.map(customer => ({
+      ...customer,
+      projects: projects.filter(project => project.customerId === customer.id)
+    }));
   }
 )
